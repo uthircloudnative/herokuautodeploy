@@ -2,15 +2,21 @@ plugins {
 	id 'org.springframework.boot' version '2.4.2'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	//id 'jacoco'
 }
+
+
 
 group = 'com.cicd'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
+
+
 repositories {
 	mavenCentral()
 }
+
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -18,6 +24,38 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
+
+
+apply plugin: 'jacoco'
+
+jacoco {
+	toolVersion = "0.8.5"
+}
+
+//Test coverage Rule to make sure code coverage is 100 %
+jacocoTestCoverageVerification {
+	violationRules {
+		rule {
+			element = 'CLASS'
+			limit {
+				counter = 'LINE'
+				value = 'COVEREDRATIO'
+				minimum = 1.0
+			}
+			excludes = [
+					'com.cicd.herokuautodeploy.model.*',
+					'com.cicd.herokuautodeploy.HerokuautodeployApplication',
+					'com.cicd.herokuautodeploy.it.*'
+			]
+		}
+	}
+}
+
+//To makes sure test task is always run and create Test Report
+test.finalizedBy jacocoTestReport
+
+//To enforce Test Coverage Rules after Test task is completed
+check.dependsOn jacocoTestCoverageVerification
 
 test {
 	useJUnitPlatform()
