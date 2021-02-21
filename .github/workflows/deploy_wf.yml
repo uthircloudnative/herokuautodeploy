@@ -1,0 +1,22 @@
+# This workflow will deploy build artifact into heroku which depends on build_wf steps
+# It will be executed only when build step is successful
+
+name: Java CI with Gradle
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: akhileshns/heroku-deploy@v3.10.9
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "herokuautodeploy-test"
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          remote_branch: main # This is optional in case different branch use that here.
+          usedocker: true
