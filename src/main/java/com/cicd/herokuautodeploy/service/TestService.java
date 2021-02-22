@@ -5,7 +5,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class TestService {
 
-
+    /**
+     * sayHello1 to get Hello from DB
+     *
+     * @return
+     */
     public String sayHello1() {
         return "Welcome to hello Service";
     }
