@@ -10,4 +10,7 @@ public class TestService {
         return "Welcome to hello Service";
     }
 
+    public String createHello() {
+        return "Created new Record";
+    }
 }

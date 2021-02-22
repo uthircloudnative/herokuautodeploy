@@ -21,6 +21,6 @@ public class TestController {
 
     @PostMapping(value = "/hello")
     public String postHello(){
-      return "This is Post Method";
+        return testService.createHello();
     }
 }
