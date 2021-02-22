@@ -1,0 +1,33 @@
+server:
+  port: 8081
+---
+spring:
+  profiles: test
+  application:
+    name: herokuautodeploy-test
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "env,beans"
+---
+spring:
+  profiles: dev
+  application:
+    name: herokuautodeploy-dev
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "info,health,trace"
+---
+spring:
+  profiles: prod
+  application:
+    name: herokuautodeploy-prod
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "info,env,health"
