@@ -10,6 +10,11 @@ public class TestService {
         return "Welcome to hello Service";
     }
 
+    /**
+     * createHello to create Hello message in DB
+     *
+     * @return
+     */
     public String createHello() {
         return "Created new Record";
     }
