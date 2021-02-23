@@ -22,6 +22,16 @@ management:
         include: "info,health,trace,env"
 ---
 spring:
+  profiles: staging
+  application:
+    name: herokuautodeploy-staging
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "info,env,health"
+---
+spring:
   profiles: prod
   application:
     name: herokuautodeploy-prod
