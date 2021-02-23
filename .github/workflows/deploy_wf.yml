@@ -5,7 +5,7 @@ name: Build and Deploy to Heroku Work Flow
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main,dev ]
 
 jobs:
   build:
@@ -28,7 +28,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Deploy to Heroku
+      - name: Deploy to Heroku Prod/Test Region
+        if: github.ref == 'refs/heads/main'  # This will make this workflow take main branch code to deploy
         uses: akhileshns/heroku-deploy@v3.10.9
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
@@ -36,3 +37,14 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           remote_branch: main # This is optional in case different branch use that here.
           usedocker: true
+
+      - name: Deploy to Heroku Dev Region
+        if: github.ref == 'refs/heads/dev'  # This will make this workflow take dev branch code to deploy
+        uses: akhileshns/heroku-deploy@v3.10.9
+        with:
+            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+            heroku_app_name: "herokuautodeploy-test"
+            heroku_email: ${{secrets.HEROKU_EMAIL}}
+            remote_branch: main # This is optional in case different branch use that here.
+            usedocker: true
+
