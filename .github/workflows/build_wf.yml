@@ -22,7 +22,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Create checkout directory
-        run: mkdir -p target/site/jacoco/
+        run: mkdir -p ${buildDir}/reports/jacoco/
 
       - name: Create symlink for Jacoco report
         run: ln -s target/site/jacoco/ ${buildDir}/reports/jacoco/
