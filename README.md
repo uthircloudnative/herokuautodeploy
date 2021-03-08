@@ -16,17 +16,7 @@ Jacoco plugin. It covers following points.
 4. This example will deploy an app in two different environment dev,prod.
    Whenever code is merged with main branch prod app is deployed similarly whenever
    dev branch is merged dev app is getting deployed.
-
-# Your Project Name
-
-some basic description
-
-### code coverages
-![LINE](http://line.coverage.link)
-![BRANCH](http://branch.coverage.link)
-![COMPLEXITY](http://complexity.link)
-
-
+   
 
 ### Access this application Health URL
 
