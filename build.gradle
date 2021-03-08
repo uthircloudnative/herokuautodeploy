@@ -42,18 +42,16 @@ jacoco {
 
 
 jacocoTestReport {
+	dependsOn test
+	sourceSets sourceSets.main
+	executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
 	reports {
 		xml.enabled false
 		csv.enabled true
-		html.destination file("${buildDir}/jacocoHtml")
+		html.destination file("${buildDir}/reports/jacoco/Html")
+		csv.destination file("${buildDir}/reports/jacoco/jacoco.csv")
 	}
 }
-
-//apply plugin: 'jacoco'
-
-//jacoco {
-//	toolVersion = "0.8.5"
-//}
 
 //Test coverage Rule to make sure code coverage is 100 %
 jacocoTestCoverageVerification {
@@ -73,6 +71,23 @@ jacocoTestCoverageVerification {
 		}
 	}
 }
+
+
+//jacocoTestReport {
+//	reports {
+//		xml.enabled false
+//		csv.enabled true
+//		html.destination file("${buildDir}/jacocoHtml")
+//	}
+//}
+
+//apply plugin: 'jacoco'
+
+//jacoco {
+//	toolVersion = "0.8.5"
+//}
+
+
 
 //To makes sure test task is always run and create Test Report
 test.finalizedBy jacocoTestReport
