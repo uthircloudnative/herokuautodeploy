@@ -48,8 +48,8 @@ jacocoTestReport {
 	reports {
 		xml.enabled false
 		csv.enabled true
-		html.destination file("${buildDir}/reports/jacoco/Html")
-		csv.destination file("${buildDir}/reports/jacoco/jacoco.csv")
+		html.destination file("${buildDir}/target/site/jacoco/Html")
+		csv.destination file("${buildDir}/target/site/jacoco/jacoco.csv")
 	}
 }
 
