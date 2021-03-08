@@ -2,7 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.4.2'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
-	//id 'jacoco'
+	id 'jacoco'
 }
 
 
@@ -26,11 +26,34 @@ dependencies {
 }
 
 
-apply plugin: 'jacoco'
+
+
+test {
+	finalizedBy jacocoTestReport // report is always generated after tests run
+}
+jacocoTestReport {
+	dependsOn test // tests are required to run before generating the report
+}
 
 jacoco {
-	toolVersion = "0.8.5"
+	toolVersion = "0.8.6"
+	//reportsDirectory = file("$buildDir/report/")
 }
+
+
+jacocoTestReport {
+	reports {
+		xml.enabled false
+		csv.enabled true
+		html.destination file("${buildDir}/jacocoHtml")
+	}
+}
+
+//apply plugin: 'jacoco'
+
+//jacoco {
+//	toolVersion = "0.8.5"
+//}
 
 //Test coverage Rule to make sure code coverage is 100 %
 jacocoTestCoverageVerification {
