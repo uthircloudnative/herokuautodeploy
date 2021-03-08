@@ -25,7 +25,7 @@ jobs:
         run: mkdir -p target/site/jacoco/
 
       - name: Create symlink for Jacoco report
-        run: ln -s target/site/jacoco/ ${buildDir}/target/site/jacoco/
+        run: ln -s target/site/jacoco/ target/site/jacoco/
 
       - name: Build with Gradle
         run: ./gradlew build
