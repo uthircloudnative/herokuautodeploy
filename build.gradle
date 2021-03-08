@@ -37,7 +37,7 @@ jacocoTestReport {
 
 jacoco {
 	toolVersion = "0.8.6"
-	//reportsDirectory = file("$buildDir/report/")
+	reportsDirectory = file("$buildDir/target/site/jacoco/")
 }
 
 
