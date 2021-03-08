@@ -44,12 +44,12 @@ jacoco {
 jacocoTestReport {
 	dependsOn test
 	sourceSets sourceSets.main
-	executionData fileTree(project.rootDir.absolutePath).include("**/target/site/jacoco/*.exec")
+	executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
 	reports {
 		xml.enabled false
 		csv.enabled true
 		//html.destination file("${buildDir}/target/site/jacoco/Html")
-		csv.destination file("${buildDir}/target/site/jacoco/jacoco.csv")
+		csv.destination file("${buildDir}/reports/jacoco/jacoco.csv")
 	}
 }
 
