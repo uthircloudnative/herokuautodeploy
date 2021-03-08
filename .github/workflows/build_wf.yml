@@ -21,14 +21,11 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Create checkout directory
-        run: mkdir -p /reports1/jacoco/
-
-      - name: Create symlink for Jacoco report
-        run: ln -s target/site/jacoco/ /reports1/jacoco/
-
       - name: Build with Gradle
         run: ./gradlew build
+
+      - name: Create symlink for Jacoco report
+        run: ln -s target/site/jacoco/jacoco.csv /reports1/jacoco/jacoco.csv
 
       - name: Generate JaCoCo Badge
         id: jacoco
