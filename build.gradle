@@ -47,9 +47,10 @@ jacocoTestReport {
 	executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
 	reports {
 		xml.enabled false
-		csv.enabled true
+		html.enabled true
+		//csv.enabled true
 		//html.destination file("${buildDir}/target/site/jacoco/Html")
-		csv.destination file("${buildDir}/reports1/jacoco/jacoco.csv")
+		//csv.destination file("${buildDir}/reports1/jacoco/jacoco.csv")
 	}
 }
 
@@ -90,10 +91,10 @@ jacocoTestCoverageVerification {
 
 
 //To makes sure test task is always run and create Test Report
-test.finalizedBy jacocoTestReport
+//test.finalizedBy jacocoTestReport
 
 //To enforce Test Coverage Rules after Test task is completed
-check.dependsOn jacocoTestCoverageVerification
+//check.dependsOn jacocoTestCoverageVerification
 
 test {
 	useJUnitPlatform()
