@@ -28,30 +28,11 @@ dependencies {
 
 
 
-test {
-	finalizedBy jacocoTestReport // report is always generated after tests run
-}
-jacocoTestReport {
-	dependsOn test // tests are required to run before generating the report
-}
+// Code Coverage Config Starts
+apply plugin: 'jacoco'
 
 jacoco {
-	toolVersion = "0.8.6"
-	//reportsDirectory = file("$buildDir/target/site/jacoco/")
-}
-
-
-jacocoTestReport {
-	dependsOn test
-	sourceSets sourceSets.main
-	executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
-	reports {
-		xml.enabled false
-		html.enabled true
-		//csv.enabled true
-		//html.destination file("${buildDir}/target/site/jacoco/Html")
-		//csv.destination file("${buildDir}/reports1/jacoco/jacoco.csv")
-	}
+	toolVersion = "0.8.5"
 }
 
 //Test coverage Rule to make sure code coverage is 100 %
@@ -62,7 +43,7 @@ jacocoTestCoverageVerification {
 			limit {
 				counter = 'LINE'
 				value = 'COVEREDRATIO'
-				minimum = 1.0
+				minimum = 0.9
 			}
 			excludes = [
 					'com.cicd.herokuautodeploy.model.*',
@@ -72,6 +53,63 @@ jacocoTestCoverageVerification {
 		}
 	}
 }
+
+
+
+//To makes sure test task is always run and create Test Report
+test.finalizedBy jacocoTestReport
+
+//To enforce Test Coverage Rules after Test task is completed
+check.dependsOn jacocoTestCoverageVerification
+
+// Code Coverage Config Ends
+
+
+
+//test {
+//	finalizedBy jacocoTestReport // report is always generated after tests run
+//}
+//jacocoTestReport {
+//	dependsOn test // tests are required to run before generating the report
+//}
+//
+//jacoco {
+//	toolVersion = "0.8.5"
+//	//reportsDirectory = file("$buildDir/target/site/jacoco/")
+//}
+//
+//
+//jacocoTestReport {
+//	dependsOn test
+//	sourceSets sourceSets.main
+//	executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+//	reports {
+//		xml.enabled false
+//		html.enabled true
+//		//csv.enabled true
+//		//html.destination file("${buildDir}/target/site/jacoco/Html")
+//		//csv.destination file("${buildDir}/reports1/jacoco/jacoco.csv")
+//	}
+//}
+
+//Test coverage Rule to make sure code coverage is 100 %
+//jacocoTestCoverageVerification {
+//	violationRules {
+//		rule {
+//			element = 'CLASS'
+//			limit {
+//				counter = 'LINE'
+//				value = 'COVEREDRATIO'
+//				minimum = 1.0
+//			}
+//			excludes = [
+//					'com.cicd.herokuautodeploy.model.*',
+//					'com.cicd.herokuautodeploy.HerokuautodeployApplication',
+//					'com.cicd.herokuautodeploy.it.*'
+//			]
+//		}
+//	}
+//}
 
 
 //jacocoTestReport {
